@@ -1,37 +1,54 @@
-body{
-    text-align: center;
-    background-color: black;
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+body {
+  background-color: black;
+  overflow: hidden;
 }
 
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#myBar {
-  width: 1%;
-  height: 5em;
-  /* background-color: #04AA6D; */
+.logo {
+  margin-bottom: 20px;
 }
-.progress-bar{
+
+.title {
+  font-family: 'Quicksand', cursive ;
+  font-size: 3rem;
+  color: #da4336;
+}
+
+.progress-bar {
+  background-color: white;
+  width: 400px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #000;
+  position: relative;
+  border-color: #5b83ff;
+}
+
+.progress {
+  height: 100%;
+  background-color: #db4437;
   position: absolute;
-  bottom:0;
-  padding:1em;
-  margin-bottom : 1em;
-  /* margin-left: 5em; */
-  /* margin-right: 5em; */
-  border-radius: 15em;
+  top: 0;
+  left: 0;
+  width: 0;
+  border-radius: 20px;
+  transition: width 0.1s ease-in-out;
+  border-top-left-radius :20px ;
+  border-bottom-left-radius :20px ;
+  margin-left: 0px;
 }
-.progress-fill{
-  border-top-left-radius: 15em;
-  border-bottom-left-radius: 15em;
-  border-top-right-radius: 15em;
-  border-bottom-right-radius: 15em;
-  
-  background-color: #3b78dc;
-  margin-left: 1em;
+.hint{
+  color : #eab404;
+  font-family:  "QiuckSand", cursive;
 }
-
 .confetti {
   display: flex;
   justify-content: center;

@@ -1,42 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"> </script>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Progress Bar</title>
+    <link rel="stylesheet" href="./style.css" />
     <style>
-        body{
-            overflow: hidden;
-        }
+      .hidden {
+        visibility: hidden;
+      }
     </style>
-</head>
-<body>
-    <div class="confetti">
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
-        <div class="confetti-piece"></div>
+  </head>
+  <body>
+    <div class="confetti hidden">
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
+      <div class="confetti-piece"></div>
     </div>
-    <div class="logo">
-        <img src="./images/wow logo@4x.png" style="width:500px; height:50%">
+    <div class="container">
+      <img
+        class="logo"
+        src="./images/wow logo@4x.png"
+        alt="Google logo"
+        width="50%"
+      />
+      <h2 class="title" id="meter-title">Wow Meter</h2>
+      <h2 class="hint">Hint : Scream to start!</h2>
+      <div class="progress-bar">
+        <div class="progress">
+          
+        </div>
+      </div>
     </div>
-   
-    <!-- create a fancy progress bar -->
-    <div class="progress-bar" id="myProgress">
-        <div class="progress-fill" id="myBar"></div>
-    </div>
-</body>
+    <script>
+      let timer = null;
+
+      const progressBar = document.querySelector(".progress");
+      const progressBarWidth = parseInt(
+        window
+          .getComputedStyle(progressBar.parentElement)
+          .getPropertyValue("width")
+      );
+
+      
+      document.addEventListener("keydown", function (event) {
+        if (event.code === "Space") {
+          if (!timer) {
+            timer = setInterval(function () {
+              const width = parseInt(progressBar.style.width) || 0;
+              if (width >= progressBarWidth) {
+                // clearInterval(timer);
+                
+                timer = null;
+              
+                document.querySelector(".hidden").classList.remove("hidden");
+                document.getElementById("meter-title").innerHTML = "WOW!";
+                document.getElementById("meter-title").style.color="#5b83ff";
+                document.getElementById("meter-title").style.fontFamily="Quicksand, sans-serif";
+                document.querySelector(".hint").classList.add("hidden");
+              } else {
+                progressBar.style.width = `${width + 2}px`;
+              }
+            }, 10);
+          }
+        }
+      });
+
+      document.addEventListener("keyup", function (event) {
+        if (event.code === "Space" && timer != null) {
+          clearInterval(timer);
+          timer = null;
+          progressBar.style.width = "0px";
+        }
+      });
+    </script>
+    <script>
+      function openFullscreen() {
+        if (document.body.requestFullscreen) {
+          document.body.requestFullscreen();
+        } else if (document.body.webkitRequestFullscreen) {
+          /* Safari */
+          document.body.webkitRequestFullscreen();
+        } else if (document.body.msRequestFullscreen) {
+          /* IE11 */
+          document.body.msRequestFullscreen();
+        }
+      }
+      addEventListener("click", function () {
+        var el = document.documentElement,
+          rfs =
+            el.requestFullScreen ||
+            el.webkitRequestFullScreen ||
+            el.mozRequestFullScreen;
+        rfs.call(el);
+      });
+
+    </script>
+  </body>
 </html>
